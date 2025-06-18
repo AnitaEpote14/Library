@@ -3,6 +3,11 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    background-image: url('https://pin.it/1EeFVXAJn?auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 100vh;
 }
 
 header {
