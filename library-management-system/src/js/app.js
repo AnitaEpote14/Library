@@ -4,7 +4,15 @@
 document.addEventListener('DOMContentLoaded', () => {
     const bookList = document.getElementById('book-list');
     const addBookForm = document.getElementById('add-book-form');
-    const books = [];
+    const loginForm = document.getElementById('login-form');
+    let currentUser = null;
+    let books = [];
+
+    // User and Book Data (in-memory for demo)
+    const users = [
+        { username: 'admin', password: 'admin123', role: 'admin' },
+        { username: 'user', password: 'user123', role: 'user' }
+    ];
 
     addBookForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -32,6 +40,27 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             li.appendChild(removeButton);
             bookList.appendChild(li);
+        });
+    }
+
+    // Authentication
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+            const user = users.find(u => u.username === username && u.password === password && u.role === role);
+            if (user) {
+                currentUser = user;
+                if (role === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else {
+                    window.location.href = 'user-dashboard.html';
+                }
+            } else {
+                alert('Invalid credentials!');
+            }
         });
     }
 });

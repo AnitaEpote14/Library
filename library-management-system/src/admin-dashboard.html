@@ -18,7 +18,31 @@
             </ul>
         </nav>
         <section id="admin-content">
-            <!-- Admin content goes here -->
+            <div class="dashboard-section">
+                <h2>Book Management</h2>
+                <form id="admin-book-form">
+                    <input type="text" id="isbn" placeholder="ISBN" required>
+                    <input type="text" id="title" placeholder="Title" required>
+                    <input type="text" id="author" placeholder="Author" required>
+                    <input type="text" id="category" placeholder="Category" required>
+                    <input type="text" id="tags" placeholder="Tags (comma separated)">
+                    <select id="status">
+                        <option value="available">Available</option>
+                        <option value="checkedout">Checked Out</option>
+                        <option value="reserved">Reserved</option>
+                    </select>
+                    <button type="submit">Add Book</button>
+                </form>
+                <table id="admin-books-table">
+                    <thead>
+                        <tr>
+                            <th>ISBN</th><th>Title</th><th>Author</th><th>Category</th><th>Tags</th><th>Status</th><th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <!-- ...existing code... -->
         </section>
     </div>
 </body>
