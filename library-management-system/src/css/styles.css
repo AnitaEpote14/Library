@@ -74,3 +74,69 @@ nav ul li a {
     bottom: 0;
     width: 100%;
 }
+
+/* Admin Dashboard Enhancements */
+.dashboard {
+    background: rgba(255,255,255,0.95);
+    margin: 40px auto;
+    padding: 30px 40px;
+    border-radius: 12px;
+    max-width: 1000px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+}
+.dashboard-section {
+    margin-bottom: 40px;
+    padding: 20px 0 0 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.dashboard-section:last-child {
+    border-bottom: none;
+}
+.styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+.styled-form input, .styled-form select, .styled-form button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    font-size: 1rem;
+}
+.styled-form button {
+    background: #35424a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.styled-form button:hover {
+    background: #1d2327;
+}
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fafafa;
+}
+.styled-table th, .styled-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px 8px;
+    text-align: left;
+}
+.styled-table th {
+    background: #35424a;
+    color: #fff;
+}
+.styled-table tr:nth-child(even) {
+    background: #f4f4f4;
+}
+.styled-table tr:hover {
+    background: #e3eafc;
+}
