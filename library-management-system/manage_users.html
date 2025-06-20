@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users | Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { background: var(--secondary, #f5f7fa); }
+        .user-search-bar { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .user-search-bar input { flex: 1; padding: 0.7rem 1rem; border: 1px solid #dbeafe; border-radius: 8px; font-size: 1rem; font-family: 'Poppins', Arial, sans-serif; }
+        .user-search-bar button { background: var(--primary, #2d6cdf); color: #fff; border: none; border-radius: 8px; padding: 0.7rem 1.5rem; font-size: 1rem; font-family: 'Poppins', Arial, sans-serif; cursor: pointer; transition: background 0.2s; }
+        .user-search-bar button:hover { background: #1a4fa0; }
+        .users-table { width: 100%; border-collapse: collapse; }
+        .users-table th, .users-table td { padding: 0.8em 0.5em; border-bottom: 1px solid #f0f0f0; text-align: left; }
+        .users-table th { color: var(--primary, #2d6cdf); font-weight: 600; }
+        .users-table td .action-btn { margin-right: 0.5em; background: none; border: none; color: var(--primary, #2d6cdf); font-size: 1.1em; cursor: pointer; transition: color 0.2s; }
+        .users-table td .action-btn:hover { color: #e67e22; }
+        @media (max-width: 700px) { .user-search-bar { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="admin-content">
+        <h2>Manage Users</h2>
+        <form class="user-search-bar" action="manage_users.php" method="get">
+            <input type="text" name="q" placeholder="Search users..." required>
+            <button type="submit">Search</button>
+        </form>
+        <table class="users-table">
+            <thead>
+                <tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jane Smith</td>
+                    <td>jane@example.com</td>
+                    <td>User</td>
+                    <td>Active</td>
+                    <td>
+                        <form action="manage_users.php" method="POST" style="display:inline;"><input type="hidden" name="action" value="deactivate"><input type="hidden" name="id" value="1"><button class="action-btn" type="submit">Deactivate</button></form>
+                        <form action="manage_users.php" method="POST" style="display:inline;"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="1"><button class="action-btn" type="submit">Delete</button></form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

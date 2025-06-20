@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <!-- Google Fonts: Poppins & Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">LibraSys</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="login.html">Login/Register</a>
+            <!-- <a href="admin_dashboard.html">admin</a> -->
+        </nav>
+    </header>
+    <section class="search-bar">
+        <form action="#" method="get">
+            <input type="text" placeholder="Search for books, authors, or ISBN..." name="q" aria-label="Search books">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+    <section class="hero">
+        <h1 class="hero-title">Welcome to LibraSys</h1>
+        <p class="hero-desc">Your one-stop digital library. Discover, borrow, and manage books with ease. Empowering readers and librarians for a smarter, more connected library experience.</p>
+        <button class="hero-btn">Browse Library</button>
+    </section>
+    <script>
+    // Real-time validation for registration form
+    const form = document.getElementById('registrationForm');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const name = document.getElementById('fullname');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const confirmError = document.getElementById('confirmError');
+    const nameError = document.getElementById('nameError');
+
+    function validateEmail(value) {
+        // Simple email regex
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    email.addEventListener('input', () => {
+        if (!validateEmail(email.value)) {
+            emailError.textContent = 'Please enter a valid email address.';
+        } else {
+            emailError.textContent = '';
+        }
+    });
+
+    password.addEventListener('input', () => {
+        if (password.value.length < 6) {
+            passwordError.textContent = 'Password must be at least 6 characters.';
+        } else {
+            passwordError.textContent = '';
+        }
+        // Also check confirm password
+        if (confirmPassword.value && password.value !== confirmPassword.value) {
+            confirmError.textContent = 'Passwords do not match.';
+        } else {
+            confirmError.textContent = '';
+        }
+    });
+
+    confirmPassword.addEventListener('input', () => {
+        if (password.value !== confirmPassword.value) {
+            confirmError.textContent = 'Passwords do not match.';
+        } else {
+            confirmError.textContent = '';
+        }
+    });
+
+    name.addEventListener('input', () => {
+        if (name.value.trim().length < 2) {
+            nameError.textContent = 'Please enter your full name.';
+        } else {
+            nameError.textContent = '';
+        }
+    });
+
+    form.addEventListener('submit', function(e) {
+        let valid = true;
+        if (!validateEmail(email.value)) {
+            emailError.textContent = 'Please enter a valid email address.';
+            valid = false;
+        }
+        if (password.value.length < 6) {
+            passwordError.textContent = 'Password must be at least 6 characters.';
+            valid = false;
+        }
+        if (password.value !== confirmPassword.value) {
+            confirmError.textContent = 'Passwords do not match.';
+            valid = false;
+        }
+        if (name.value.trim().length < 2) {
+            nameError.textContent = 'Please enter your full name.';
+            valid = false;
+        }
+        if (!valid) e.preventDefault();
+    });
+    </script>
+</body>
+</html>

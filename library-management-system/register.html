@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Library Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .registration-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--secondary, #f5f7fa);
+        }
+        .registration-form {
+            background: #fff;
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            width: 100%;
+            max-width: 400px;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        .registration-form h2 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary, #2d6cdf);
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+        .registration-form label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+        .registration-form input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            margin-bottom: 1.1rem;
+            border: 1px solid #dbeafe;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', Arial, sans-serif;
+            transition: border 0.2s;
+        }
+        .registration-form input:focus {
+            border-color: var(--primary, #2d6cdf);
+            outline: none;
+        }
+        .registration-form .form-error {
+            color: #e74c3c;
+            font-size: 0.95rem;
+            margin-bottom: 0.7rem;
+            min-height: 1.2em;
+        }
+        .registration-form button[type="submit"] {
+            width: 100%;
+            background: var(--primary, #2d6cdf);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.9rem 0;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .registration-form button[type="submit"]:hover {
+            background: #1a4fa0;
+        }
+        @media (max-width: 600px) {
+            .registration-form {
+                padding: 1.2rem 0.7rem;
+            }
+        }
+        .account-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .account-switch span {
+            font-size: 1rem;
+            color: #444;
+            margin: 0.5rem 0;
+        }
+        .account-switch-link {
+            color: var(--primary, #2d6cdf);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <section class="registration-section">
+        <form class="registration-form" id="registerForm" action="register.php" method="POST" autocomplete="off" novalidate>
+            <h2>User Registration</h2>
+            <label for="regFullname">Full Name</label>
+            <input type="text" id="regFullname" name="fullname" required placeholder="Enter your full name">
+            <div class="form-error" id="regNameError"></div>
+
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" name="email" required placeholder="Enter your email">
+            <div class="form-error" id="regEmailError"></div>
+
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" name="password" required placeholder="Create a password" minlength="6">
+            <div class="form-error" id="regPasswordError"></div>
+
+            <label for="regConfirmPassword">Confirm Password</label>
+            <input type="password" id="regConfirmPassword" name="confirmPassword" required placeholder="Re-enter your password">
+            <div class="form-error" id="regConfirmError"></div>
+
+            <button type="submit">Register</button>
+            <div class="account-switch">
+                <span>Already have an account?</span>
+                <a href="login.html" class="account-switch-link">Login here</a>
+            </div>
+        </form>
+    </section>
+    <script src="register.js"></script>
+</body>
+</html>

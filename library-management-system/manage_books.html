@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Books | Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { background: var(--secondary, #f5f7fa); }
+        .add-book-form { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+        .add-book-form input, .add-book-form select { padding: 0.7rem 1rem; border: 1px solid #dbeafe; border-radius: 8px; font-size: 1rem; font-family: 'Poppins', Arial, sans-serif; flex: 1 1 180px; }
+        .add-book-form button { background: var(--primary, #2d6cdf); color: #fff; border: none; border-radius: 8px; padding: 0.7rem 1.5rem; font-size: 1rem; font-family: 'Poppins', Arial, sans-serif; cursor: pointer; transition: background 0.2s; }
+        .add-book-form button:hover { background: #1a4fa0; }
+        .books-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+        .books-table th, .books-table td { padding: 0.8em 0.5em; border-bottom: 1px solid #f0f0f0; text-align: left; }
+        .books-table th { color: var(--primary, #2d6cdf); font-weight: 600; }
+        .books-table td .action-btn { margin-right: 0.5em; background: none; border: none; color: var(--primary, #2d6cdf); font-size: 1.1em; cursor: pointer; transition: color 0.2s; }
+        .books-table td .action-btn:hover { color: #e67e22; }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.3); justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: #fff; padding: 2rem 1.5rem; border-radius: 12px; min-width: 320px; max-width: 95vw; }
+        .modal-content h3 { margin-bottom: 1rem; color: var(--primary, #2d6cdf); }
+        .modal-content form { display: flex; flex-direction: column; gap: 1rem; }
+        .modal-content input, .modal-content select { padding: 0.7rem 1rem; border: 1px solid #dbeafe; border-radius: 8px; font-size: 1rem; font-family: 'Poppins', Arial, sans-serif; }
+        .modal-content .modal-actions { display: flex; gap: 1rem; justify-content: flex-end; }
+        .modal-content button { background: var(--primary, #2d6cdf); color: #fff; border: none; border-radius: 8px; padding: 0.7rem 1.5rem; font-size: 1rem; font-family: 'Poppins', Arial, sans-serif; cursor: pointer; transition: background 0.2s; }
+        .modal-content button.cancel { background: #ccc; color: #222; }
+        @media (max-width: 700px) { .add-book-form { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <div class="admin-content">
+        <h2>Manage Books</h2>
+        <form class="add-book-form" action="add_book.php" method="POST">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="author" placeholder="Author" required>
+            <input type="text" name="genre" placeholder="Genre" required>
+            <input type="number" name="quantity" placeholder="Quantity" min="1" required>
+            <button type="submit">Add Book</button>
+        </form>
+        <table class="books-table">
+            <thead>
+                <tr><th>Title</th><th>Author</th><th>Genre</th><th>Quantity</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sample Book</td>
+                    <td>John Doe</td>
+                    <td>Fiction</td>
+                    <td>5</td>
+                    <td>
+                        <button class="action-btn edit-btn" data-id="1">✏️</button>
+                        <form action="delete_book.php" method="POST" style="display:inline;"><input type="hidden" name="id" value="1"><button class="action-btn delete-btn" type="submit">🗑️</button></form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal" id="editBookModal">
+        <div class="modal-content">
+            <h3>Edit Book</h3>
+            <form action="edit_book.php" method="POST">
+                <input type="hidden" name="id" id="editBookId">
+                <input type="text" name="title" id="editBookTitle" placeholder="Title" required>
+                <input type="text" name="author" id="editBookAuthor" placeholder="Author" required>
+                <input type="text" name="genre" id="editBookGenre" placeholder="Genre" required>
+                <input type="number" name="quantity" id="editBookQuantity" placeholder="Quantity" min="1" required>
+                <div class="modal-actions">
+                    <button type="button" class="cancel" id="closeEditModal">Cancel</button>
+                    <button type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+    // Modal logic for editing
+    document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('editBookModal').classList.add('active');
+            // Populate modal fields (demo values)
+            document.getElementById('editBookId').value = 1;
+            document.getElementById('editBookTitle').value = 'Sample Book';
+            document.getElementById('editBookAuthor').value = 'John Doe';
+            document.getElementById('editBookGenre').value = 'Fiction';
+            document.getElementById('editBookQuantity').value = 5;
+        });
+    });
+    document.getElementById('closeEditModal').onclick = function() {
+        document.getElementById('editBookModal').classList.remove('active');
+    };
+    window.onclick = function(event) {
+        if (event.target === document.getElementById('editBookModal')) {
+            document.getElementById('editBookModal').classList.remove('active');
+        }
+    };
+    </script>
+</body>
+</html>

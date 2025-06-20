@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard | Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: var(--secondary, #f5f7fa);
+        }
+        .user-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .user-topbar .app-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary, #2d6cdf);
+        }
+        .user-topbar .logout-btn {
+            background: var(--primary, #2d6cdf);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1.2rem;
+            font-size: 1rem;
+            font-family: 'Poppins', Arial, sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .user-topbar .logout-btn:hover {
+            background: #1a4fa0;
+        }
+        .user-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .user-sidebar {
+            background: #fff;
+            min-width: 220px;
+            max-width: 220px;
+            padding: 2rem 1rem 1rem 1rem;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            transition: left 0.3s;
+        }
+        .user-sidebar.collapsed {
+            min-width: 60px;
+            max-width: 60px;
+            padding: 2rem 0.3rem 1rem 0.3rem;
+        }
+        .sidebar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            color: var(--primary, #2d6cdf);
+        }
+        .user-sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 0.7em;
+            text-decoration: none;
+            color: #222;
+            font-size: 1.08rem;
+            font-family: 'Poppins', Arial, sans-serif;
+            padding: 0.6em 1em;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .user-sidebar a.active, .user-sidebar a:hover {
+            background: var(--primary, #2d6cdf);
+            color: #fff;
+        }
+        .user-main {
+            flex: 1;
+            padding: 2rem 1.5rem;
+        }
+        .dashboard-section {
+            margin-bottom: 2rem;
+        }
+        .dashboard-section h2 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.3rem;
+            color: var(--primary, #2d6cdf);
+            margin-bottom: 1rem;
+        }
+        .borrowed-books-list {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 1.2rem 1rem;
+            margin-bottom: 2rem;
+        }
+        .borrowed-books-list table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .borrowed-books-list th, .borrowed-books-list td {
+            padding: 0.7em 0.5em;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .borrowed-books-list th {
+            color: var(--primary, #2d6cdf);
+            font-weight: 600;
+        }
+        .search-books-bar {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .search-books-bar input[type="text"] {
+            flex: 1;
+            padding: 0.7rem 1rem;
+            border: 1px solid #dbeafe;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        .search-books-bar button {
+            background: var(--primary, #2d6cdf);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            font-family: 'Poppins', Arial, sans-serif;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-books-bar button:hover {
+            background: #1a4fa0;
+        }
+        @media (max-width: 900px) {
+            .user-layout {
+                flex-direction: column;
+            }
+            .user-sidebar {
+                flex-direction: row;
+                min-width: 100%;
+                max-width: 100%;
+                box-shadow: none;
+                padding: 1rem 0.5rem;
+                gap: 0.5rem;
+                overflow-x: auto;
+            }
+            .user-main {
+                padding: 1rem 0.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .user-topbar {
+                flex-direction: column;
+                gap: 0.7rem;
+                padding: 0.7rem 0.5rem;
+            }
+            .user-sidebar {
+                padding: 0.7rem 0.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="user-topbar">
+        <span class="app-name">LibraSys</span>
+        <button class="logout-btn">Logout</button>
+    </div>
+    <div class="user-layout">
+        <aside class="user-sidebar" id="userSidebar">
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Sidebar">☰</button>
+            <a href="user_dashboard.html" class="active">Dashboard</a>
+            <a href="#">My Books</a>
+            <a href="user_dashboard.html#search" >Search</a>
+            <a href="#">Profile</a>
+        </aside>
+        <main class="user-main">
+            <section class="dashboard-section">
+                <h2>Borrowed Books</h2>
+                <div class="borrowed-books-list">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="borrowedBooksBody">
+                            <tr><td>Sample Book 1</td><td>2025-07-01</td></tr>
+                            <tr><td>Sample Book 2</td><td>2025-07-10</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="dashboard-section">
+                <h2>Search Books</h2>
+                <form class="search-books-bar" action="search_books.php" method="get">
+                    <input type="text" name="q" placeholder="Search for books..." required>
+                    <button type="submit">Search</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script>
+    // Sidebar collapse/expand for mobile
+    const sidebar = document.getElementById('userSidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
+    });
+    </script>
+</body>
+</html>
