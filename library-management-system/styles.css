@@ -1,0 +1,55 @@
+/* Style for catalog layout: category title, book rows, book cards with image, title, and button */
+
+.catalog-section {
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.catalog-section h2 {
+  margin-bottom: 18px;
+  font-size: 1.5rem;
+  font
+
+.book-card {
+  width: 150px;
+  text-align: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 12px 8px 16px 8px;
+  flex-shrink: 0;
+}
+
+.book-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.book-card p {
+  margin: 10px 0 6px 0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.book-card button {
+  background-color: #2d6cdf;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  margin-top: 5px;
+  cursor: pointer;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.book-card button:hover {
+  background-color: #1a4fa0;
+}
+@media (max-width: 600px) {
+  .catalog-section { margin: 16px; }
+  .book-card { width: 120px; padding: 8px 4px 12px 4px; }
+  .book-card img { height: 150px; }
+}

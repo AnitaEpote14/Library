@@ -9,26 +9,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="navbar">
-        <div class="logo">LibraSys</div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#about">About</a>
-            <a href="login.html">Login/Register</a>
-            <!-- <a href="admin_dashboard.html">admin</a> -->
-        </nav>
-    </header>
-    <section class="search-bar">
-        <form action="#" method="get">
-            <input type="text" placeholder="Search for books, authors, or ISBN..." name="q" aria-label="Search books">
-            <button type="submit">Search</button>
-        </form>
-    </section>
-    <section class="hero">
-        <h1 class="hero-title">Welcome to LibraSys</h1>
-        <p class="hero-desc">Your one-stop digital library. Discover, borrow, and manage books with ease. Empowering readers and librarians for a smarter, more connected library experience.</p>
-        <button class="hero-btn">Browse Library</button>
-    </section>
+    <!-- Book Catalog Section -->
+    <section id="catalog-root"></section>
+    <script src="script.js"></script>
     <script>
     // Real-time validation for registration form
     const form = document.getElementById('registrationForm');
